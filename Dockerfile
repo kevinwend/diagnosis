@@ -13,8 +13,6 @@ ENV PORT=3000
 
 LABEL name=diagnosis
 
-# 暴露必要的服務埠
-EXPOSE 3000 3001
+EXPOSE 3000
 
-# 使用 pm2 同時啟動兩個服務
-CMD ["pm2-runtime", "start", "ecosystem.config.js"]
+CMD ["pm2-runtime", "start", "npm", "--", "start"]

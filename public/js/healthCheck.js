@@ -7,14 +7,15 @@ async function startHealthCheckDiagnosis() {
 
   try {
     const response = await fetch(
-      "http://diagnosis.dev.deledao.com/health-check"
+      "https://diagnosis.dev.deledao.com/signal-health-check"
     );
     const data = await response.text();
     const endTime = new Date().getTime();
     const responseTime = endTime - startTime;
 
-    if (data.includes("ok")) {
-      console.log("Health check success:", data);
+    if (data.includes("signal is alive")) {
+      const result = JSON.parse(data);
+      console.log("Health check success:", result.data);
       collectedData.healthCheckStatus = "success";
       healthCheckResultDiv.innerHTML = `Health check successful!`;
       healthCheckResultDiv.className = "status connected";
@@ -29,8 +30,8 @@ async function startHealthCheckDiagnosis() {
       connectionTimeSpan.innerHTML = `-`;
     }
   } catch (err) {
-    collectedData.healthCheckStatus = "error";
-    console.error("Health check error:", error);
+    collectedData.healthCheckStatus = `error: ${err.message}`;
+    console.error("Health check error:", err.message);
     const endTime = new Date().getTime();
     const responseTime = endTime - startTime;
     healthCheckResultDiv.innerHTML = `Unable to connect to the health check service!`;

@@ -4,12 +4,6 @@ let connectionEstablishedTime = null;
 let connectionTimer = null;
 let lastHeartbeat = null;
 
-const collectedData = {
-  wsStatus: "",
-  healthCheckStatus: "",
-  ipAddress: "",
-};
-
 const wsConnectBtn = document.getElementById("wsConnectBtn");
 const wsDisconnectBtn = document.getElementById("wsDisconnectBtn");
 const wsConnectStatus = document.getElementById("wsConnectStatus");
@@ -38,7 +32,7 @@ async function connect() {
   connectionStartTime = Date.now();
   updateStatus(false);
 
-  ws = new WebSocket("ws://diagnosis.dev.deledao.com:3001");
+  ws = new WebSocket("ws://diagnosis.dev.deledao.com");
 
   // 使用 Promise 等待 onopen
   await new Promise((resolve, reject) => {
@@ -60,7 +54,6 @@ async function connect() {
 
     ws.onerror = function (error) {
       collectedData.wsStatus = "error";
-      console.error("WebSocket error:", error);
       updateStatus(false);
       reject(error);
     };

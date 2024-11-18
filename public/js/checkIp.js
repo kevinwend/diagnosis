@@ -14,12 +14,12 @@ async function checkIp() {
       ipStatus.innerHTML = "Checked";
       ipBtn.disabled = true;
     } else {
-      collectedData.ipAddress = "error";
+      collectedData.ipAddress = "error: Failed to fetch";
       ipStatus.className = "status disconnected";
       ipStatus.innerHTML = "Checked Fail";
     }
   } catch (err) {
-    collectedData.ipAddress = "error";
+    collectedData.ipAddress = `error: ${err.message}`;
     console.log(err);
     ipStatus.className = "status disconnected";
     ipStatus.innerHTML = "Checked Fail";

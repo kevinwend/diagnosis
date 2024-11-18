@@ -11,6 +11,7 @@ require('@babel/register')({
 const app = require('../app');
 const debug = require('debug')('myapp:server');
 const http = require('http');
+const setupWebSocket = require('./websocket');
 
 /**
  * Get port from environment and store in Express.
@@ -24,6 +25,7 @@ app.set('port', port);
  */
 
 const server = http.createServer(app);
+setupWebSocket(server);
 
 /**
  * Listen on provided port, on all network interfaces.

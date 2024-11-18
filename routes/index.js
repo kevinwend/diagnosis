@@ -11,30 +11,34 @@ router.get("/", function (req, res, next) {
 
 
 router.get("/health-check", async (req, res) => {
-  // try {
-  //   const response = await fetch("https://signal.deledao.com/HealthCheck");
-
-  //   if (!response.ok) {
-  //     throw new Error(`HTTP error! Status: ${response.status}`);
-  //   }
-
-  //   const data = await response.text();
-
-  //   res.json({data, status: "success"});
-  // } catch (error) {
-  //   res.status(500).json({ error: error, status: "error" });
-  // }
   res.status(200).send("ok");
 });
 
+router.get("/signal-health-check", async (req, res) => {
+  try {
+    const response = await fetch("https://signal.deledao.com/HealthCheck");
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.text();
+
+    res.json({data, status: "success"});
+  } catch (error) {
+    res.status(500).json({ error: error, status: "error" });
+  }
+});
 
 router.post("/saveConnectionData", (req, res) =>{
-  const { wsStatus, healthCheckStatus, ipAddress } = req.body;
+  const { wsStatus, healthCheckStatus, ipAddress, email, role } = req.body;
   const log = {
     connTest: {
-      wsStatus: wsStatus || "error",
-      healthCheck: healthCheckStatus || "error",
-      userIp: ipAddress || "error",
+      wsStatus: wsStatus,
+      healthCheck: healthCheckStatus ,
+      userIp: ipAddress,
+      email: email || "",
+      role: role || "",
     }
   }
   console.log(JSON.stringify(log))
