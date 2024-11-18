@@ -7,15 +7,14 @@ async function startHealthCheckDiagnosis() {
 
   try {
     const response = await fetch(
-      "https://diagnosis.dev.deledao.com/signal-health-check"
+      "https://signal.deledao.com/HealthCheck"
     );
     const data = await response.text();
     const endTime = new Date().getTime();
     const responseTime = endTime - startTime;
 
     if (data.includes("signal is alive")) {
-      const result = JSON.parse(data);
-      console.log("Health check success:", result.data);
+      console.log("Health check success:", data);
       collectedData.healthCheckStatus = "success";
       healthCheckResultDiv.innerHTML = `Health check successful!`;
       healthCheckResultDiv.className = "status connected";

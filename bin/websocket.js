@@ -7,7 +7,7 @@ function setupWebSocket(server) {
     const wss = new WebSocket.Server({ server });
 
     wss.on('connection', (ws) => {
-        console.log('Client connected');
+        // console.log('Client connected');
         ws.isAlive = true;
         ws.lastPing = Date.now();
 
@@ -19,7 +19,7 @@ function setupWebSocket(server) {
                 ws.isAlive = true;
                 ws.lastPing = Date.now();
             } else if (data.type === 'offer' || data.type === 'answer' || data.type === 'candidate') {
-                console.log(`Received signaling: ${data.type}`);
+                // console.log(`Received signaling: ${data.type}`);
 
                 wss.clients.forEach((client) => {
                     if (client !== ws && client.readyState === WebSocket.OPEN) {
@@ -27,12 +27,12 @@ function setupWebSocket(server) {
                     }
                 });
             } else {
-                console.log('Received unknown message:', data);
+                // console.log('Received unknown message:', data);
             }
         });
 
         ws.on('close', () => {
-            console.log('Client disconnected');
+            // console.log('Client disconnected');
         });
 
         ws.send(JSON.stringify({ type: 'connected', content: 'Successfully connected to server' }));
@@ -41,12 +41,12 @@ function setupWebSocket(server) {
     setInterval(() => {
         wss.clients.forEach((ws) => {
             if (!ws.isAlive) {
-                console.log('Connection timeout');
+                // console.log('Connection timeout');
                 return ws.terminate();
             }
 
             if (Date.now() - ws.lastPing > CONNECTION_TIMEOUT) {
-                console.log('Heartbeat timeout');
+                // console.log('Heartbeat timeout');
                 return ws.terminate();
             }
 

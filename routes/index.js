@@ -31,11 +31,11 @@ router.get("/signal-health-check", async (req, res) => {
 });
 
 router.post("/saveConnectionData", (req, res) =>{
-  const { wsStatus, healthCheckStatus, ipAddress, email, role } = req.body;
+  const { wsStatus, healthCheckStatus, ipAddress, email, role, wsConnectDuration } = req.body;
   const log = {
     connTest: {
-      wsStatus: wsStatus,
-      healthCheck: healthCheckStatus ,
+      wsStatus:{wsStatus, wsConnectDuration},
+      healthCheck: healthCheckStatus,
       userIp: ipAddress,
       email: email || "",
       role: role || "",
