@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" href="favicon.ico" />
+    <title>WebSocket Client</title>
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="./assets/logo_classroom.svg" alt="deledao_logo" />
+      </div>
+    </header>
+    <div class="container">
+      <h2>Deledao Connection Test</h2>
+
+      <div>
+        <button id="wsConnectBtn">Connect to WebSocket</button>
+        <button id="wsDisconnectBtn" style="display: none">
+          Connect to WebSocket
+        </button>
+        <div id="wsConnectStatus" class="status disconnected">Disconnected</div>
+
+        <div class="stats none">
+          <h3>Connection Statistics</h3>
+          <p>Connection Attempt Time: <span id="wsConnectTime">-</span></p>
+          <p>Connection Duration: <span id="wsConnectDuration">-</span></p>
+          <p>Last Heartbeat: <span id="wsConnectLastHeartbeat">-</span></p>
+        </div>
+      </div>
+
+      <div>
+        <button id="healthCheckBtn">Service Health Check</button>
+        <div id="healthCheckStatus" class="status disconnected">
+          Disconnected
+        </div>
+
+        <div class="stats none">
+          <h3>Connection Statistics</h3>
+          <p>
+            Time spent:
+            <span id="healthCheckConnectTime">-</span>
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <button id="ipBtn">Check IP</button>
+        <div id="ipStatus" class="status disconnected">Unchecked</div>
+
+        <div class="stats none">
+          <h3>IP</h3>
+          <p id="ipText">-</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/webSocket.js"></script>
+    <script src="./js/healthCheck.js"></script>
+    <script src="./js/checkIp.js"></script>
+    <script src="./js/sendDataToBackend.js"></script>
+    <script src="./js/windowOnload.js"></script>
+  </body>
+</html>

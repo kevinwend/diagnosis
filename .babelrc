@@ -1,0 +1,11 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": "node 22",  // 根據你的 Node.js 版本設定目標環境
+        "modules": "auto"  // 保持 ES 模組格式，讓 Babel 適應當前的模組環境
+      }
+    ]
+  ]
+}
