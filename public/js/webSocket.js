@@ -32,7 +32,7 @@ async function connect() {
   connectionStartTime = Date.now();
   updateStatus(false);
 
-  ws = new WebSocket("ws://diagnosis.dev.deledao.com");
+  ws = new WebSocket("wss://diagnosis.dev.deledao.com");
 
   // 使用 Promise 等待 onopen
   await new Promise((resolve, reject) => {
