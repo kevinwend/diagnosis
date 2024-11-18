@@ -7,6 +7,8 @@ RUN npm install
 
 RUN npm install -g pm2
 
+RUN npm install punycode
+
 COPY . .
 
 ENV PORT=3000
