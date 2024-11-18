@@ -4,7 +4,11 @@ window.onload = async function () {
     try {
       await connect();
     } catch (error) {
-      collectedData.wsStatus = "webSocket error during connect";
+      const log = {
+        "webSocket error during connect": JSON.stringify(error),
+      }
+      
+      collectedData.wsStatus = log;
       console.error("WebSocket error during connect:", error);
     }
 

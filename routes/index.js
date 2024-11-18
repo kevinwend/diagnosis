@@ -34,7 +34,7 @@ router.post("/saveConnectionData", (req, res) =>{
   const { wsStatus, healthCheckStatus, ipAddress, email, role, wsConnectDuration } = req.body;
   const log = {
     connTest: {
-      wsStatus:{wsStatus, wsConnectDuration},
+      wsStatus:{...wsStatus, wsConnectDuration},
       healthCheck: healthCheckStatus,
       userIp: ipAddress,
       email: email || "",

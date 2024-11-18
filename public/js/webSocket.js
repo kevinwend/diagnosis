@@ -20,8 +20,8 @@ function updateConnectionDuration() {
     );
     wsConnectDuration.textContent = `${duration} seconds`;
 
-    if (duration % 60 === 0 && duration < 600) {
-      collectedData["wsConnectDuration"] = `${duration} seconds`;
+    if (duration % 60 === 0 && duration <= 600) {
+      collectedData["wsConnectDuration"] = duration;
       sendDataToBackend();
     }
   }
@@ -42,12 +42,17 @@ async function connect() {
   // 使用 Promise 等待 onopen
   await new Promise((resolve, reject) => {
     ws.onopen = function () {
-      collectedData.wsStatus = "success";
-
+      
       connectionEstablishedTime = Date.now();
       const connectionTime = connectionEstablishedTime - connectionStartTime;
       wsConnectTime.textContent = `${connectionTime} ms`;
 
+      const log = {
+        status: "success",
+        "wsConnectTime": connectionTime,
+      }
+      collectedData["wsStatus"] = log;
+      
       updateStatus(true);
 
       // 啟動計時器
