@@ -1,5 +1,5 @@
 function sendDataToBackend() {
-  fetch("https://diagnosis.dev.deledao.com/saveConnectionData", {
+  fetch("https://diagnosis.deledao.com/saveConnectionData", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
