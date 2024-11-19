@@ -3,8 +3,8 @@ const params = new URLSearchParams(url.search);
 const email = params.get('email');
 
 const collectedData = {
-  wsStatus: "",
-  healthCheckStatus: "",
+  wsStatus: {},
+  healthCheckStatus: {},
   ipAddress: "",
   email: email,
   role: "student",

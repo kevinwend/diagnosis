@@ -49,6 +49,7 @@ async function startHealthCheckDiagnosis(count = 1) {
         ...logEntry,
       };
       console.log(collectedData);
+      sendDataToBackend();
     })
     .catch((error) => {
       const endTime = Date.now();
