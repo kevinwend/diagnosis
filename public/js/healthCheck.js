@@ -14,8 +14,9 @@ async function startHealthCheckDiagnosis(count = 1) {
   // 設定重試次數上限，這裡假設最大重試次數為 3
   const maxRetries = 3;
 
+  const timeoutList = [15, 20 ,25]
   // 設定每次請求的超時時間為 5 的次方
-  const timeout = 5 ** (count - 1); // 根據 count 計算 timeout
+  const timeout = timeoutList[count-1]; // 根據 count 計算 timeout
 
   // 建立 log 記錄
   const logEntry = {
