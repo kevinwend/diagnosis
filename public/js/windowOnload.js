@@ -15,9 +15,9 @@ window.onload = async function () {
     try {
       await startHealthCheckDiagnosis();
     } catch (error) {
-      console.error("Error during startHealthCheckDiagnosis:", error);
+        console.error("Error during startHealthCheckDiagnosis:", error);
     }
-
+    
     try {
       await checkIp();
     } catch (error) {

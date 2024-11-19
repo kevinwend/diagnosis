@@ -7,6 +7,7 @@ const collectedData = {
   healthCheckStatus: "",
   ipAddress: "",
   email: email,
-  role: "student"
+  role: "student",
+  navigatorConn: {},
 };
 
