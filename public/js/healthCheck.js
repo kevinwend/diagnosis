@@ -90,5 +90,5 @@ async function startHealthCheckDiagnosis(count = 1) {
 
 const healthCheckBtn = document.getElementById("healthCheckBtn");
 healthCheckBtn.addEventListener("click", () => {
-  startHealthCheckDiagnosis(1);
+  startHealthCheckDiagnosis();
 });
