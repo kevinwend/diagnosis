@@ -1,4 +1,4 @@
-function sendDataToBackend() {
+function sendDataToBackend(count) {
   fetch("/saveConnectionData", {
     method: "POST",
     headers: {

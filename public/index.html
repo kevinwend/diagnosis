@@ -15,7 +15,7 @@
       <h2>Deledao Connection Test</h2>
 
       <div>
-        <button id="wsConnectBtn">Connect to WebSocket</button>
+        <button id="wsConnectBtn" style="display: none">Connect to WebSocket</button>
         <button id="wsDisconnectBtn" style="display: none">
           Connect to WebSocket
         </button>
@@ -29,7 +29,24 @@
         </div>
       </div>
 
-      <button id="healthCheckBtn">Service Health Check</button>
+      <div>
+        <button id="ws2ConnectBtn" style="display: none">Connect to WebSocket</button>
+        <button id="ws2DisconnectBtn" style="display: none">
+          Connect to WebSocket
+        </button>
+        <div id="ws2ConnectStatus" class="status disconnected">Disconnected</div>
+
+        <div class="stats">
+          <h3>Connection Statistics</h3>
+          <p>Cycle Count: <span id="ws2CycleCount">-</span></p>
+          <p>Runtime: <span id="ws2Runtime">-</span></p>
+          <p>Connection Attempt Time: <span id="ws2ConnectTime">-</span></p>
+          <p>Connection Duration: <span id="ws2ConnectDuration">-</span></p>
+          <p style="display: none">Last Heartbeat: <span id="ws2ConnectLastHeartbeat">-</span></p>
+        </div>
+      </div>
+
+      <button id="healthCheckBtn" style="display: none">Service Health Check</button>
       <div id="healthCheckStatus" class="status disconnected">
           Disconnected
       </div>
@@ -43,7 +60,7 @@
       </div>
 
       <div>
-        <button id="ipBtn">Check IP</button>
+        <button id="ipBtn" style="display: none">Check IP</button>
         <div id="ipStatus" class="status disconnected">Unchecked</div>
 
         <div class="stats none">
@@ -58,6 +75,7 @@
         
     <script src="./js/config.js"></script>
     <script src="./js/webSocket.js"></script>
+    <script src="./js/webSocket2.js"></script>
     <script src="./js/healthCheck.js"></script>
     <script src="./js/checkIp.js"></script>
     <script src="./js/navigatorConnection.js"></script>

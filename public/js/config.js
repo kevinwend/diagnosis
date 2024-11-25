@@ -4,6 +4,7 @@ const email = params.get('email');
 
 const collectedData = {
   wsStatus: {},
+  wsStatus2: {},
   healthCheckStatus: {},
   ipAddress: "",
   email: email,

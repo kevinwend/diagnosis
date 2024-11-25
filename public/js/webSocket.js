@@ -63,7 +63,6 @@ async function connect() {
     };
 
     ws.onerror = function (error) {
-      collectedData.wsStatus = "error";
       updateStatus(false);
       reject(error);
     };
@@ -96,11 +95,6 @@ async function connect() {
 
     ws = null;
     connectionEstablishedTime = null;
-  };
-
-  ws.onerror = function (error) {
-    console.error("WebSocket error:", error);
-    updateStatus(false);
   };
 }
 

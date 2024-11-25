@@ -7,8 +7,17 @@ window.onload = async function () {
       const log = {
         "webSocket error during connect": JSON.stringify(error),
       }
-      
       collectedData.wsStatus = log;
+      console.error("WebSocket error during connect:", error);
+    }
+
+    try {
+      await connect2();
+    } catch (error) {
+      const log = {
+        "webSocket error during connect": JSON.stringify(error),
+      }
+      collectedData["wsStatus2"] = log;
       console.error("WebSocket error during connect:", error);
     }
 
