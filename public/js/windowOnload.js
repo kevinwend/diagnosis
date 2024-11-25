@@ -11,15 +11,23 @@ window.onload = async function () {
       console.error("WebSocket error during connect:", error);
     }
 
-    try {
-      await connect2();
-    } catch (error) {
-      const log = {
-        "webSocket error during connect": JSON.stringify(error),
+    const url2 = window.location;
+    const params2 = new URLSearchParams(url2.search);
+    const test = params2.get('test');
+    const testEle = document.querySelector("#test");
+    if(test){
+      testEle.removeAttribute("style");
+      try {
+        await connect2();
+      } catch (error) {
+        const log = {
+          "webSocket error during connect": JSON.stringify(error),
+        }
+        collectedData["wsStatus2"] = log;
+        console.error("WebSocket error during connect:", error);
       }
-      collectedData["wsStatus2"] = log;
-      console.error("WebSocket error during connect:", error);
     }
+    
 
     try {
       await startHealthCheckDiagnosis();
