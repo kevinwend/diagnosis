@@ -21,7 +21,7 @@ function updateConnectionDuration() {
     wsConnectDuration.textContent = `${duration} seconds`;
 
     if (duration % 60 === 0 && duration <= 600) {
-      collectedData["wsConnectDuration"] = duration;
+      collectedData["wsStatus"]["wsConnectDuration"] = duration;
       sendDataToBackend();
     }
   }
