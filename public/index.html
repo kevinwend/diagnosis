@@ -29,6 +29,24 @@
         </div>
       </div>
 
+      <div>
+        <button id="ws2ConnectBtn">Connect to WebSocket</button>
+        <button id="ws2DisconnectBtn" style="display: none">
+          Connect to WebSocket
+        </button>
+        <div id="ws2ConnectStatus" class="status disconnected">Disconnected</div>
+
+        <div class="stats">
+          <h3>Connection Statistics</h3>
+          <p>Runtime <span id="ws2Runtime">-</span></p>
+          <p>Cycle Count: <span id="ws2cycleCount">-</span></p>
+          <p>Connection Attempt Time: <span id="ws2ConnectTime">-</span></p>
+          <p>Connection Duration: <span id="ws2ConnectDuration">-</span></p>
+          <!-- ws2沒有心跳偵測 -->
+          <p style="display: none">Last Heartbeat: <span id="ws2ConnectLastHeartbeat">-</span></p>
+        </div>
+      </div>
+
       <button id="healthCheckBtn">Service Health Check</button>
       <div id="healthCheckStatus" class="status disconnected">
           Disconnected

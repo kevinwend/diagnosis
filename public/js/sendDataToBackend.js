@@ -1,4 +1,5 @@
 function sendDataToBackend() {
+  console.log("collectedData", collectedData)
   fetch("/saveConnectionData", {
     method: "POST",
     headers: {
