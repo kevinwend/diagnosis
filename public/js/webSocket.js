@@ -47,23 +47,29 @@ async function connect() {
       const connectionTime = connectionEstablishedTime - connectionStartTime;
       wsConnectTime.textContent = `${connectionTime} ms`;
 
-      const log = {
-        status: "success",
-        "wsConnectTime": connectionTime,
-      }
-      collectedData["wsStatus"] = log;
-      
       updateStatus(true);
-
+      
       // 啟動計時器
       connectionTimer = setInterval(updateConnectionDuration, 1000);
 
+      const log = {
+        status: "success",
+        "wsConnectTime": connectionTime,
+        wsConnectDuration: 0,
+      }
+      collectedData["wsStatus"] = log;
+      
       console.log("Connected to WebSocket server");
       resolve();
     };
 
     ws.onerror = function (error) {
       updateStatus(false);
+
+      collectedData["wsStatus"]["wsConnectDuration"] = Number(wsConnectDuration?.textContent?.replace(" seconds (Disconnected)", "")) || Number(wsConnectDuration?.textContent?.replace("-", "")) || 0;
+      collectedData["wsStatus"]["status"] = "onerror";
+      sendDataToBackend();
+
       reject(error);
     };
   });
@@ -86,12 +92,17 @@ async function connect() {
     updateStatus(false);
     clearInterval(connectionTimer);
 
+    // 當被關閉連線，頁面上顯示最後的時間
     if (connectionEstablishedTime) {
       const totalDuration = Math.floor(
         (Date.now() - connectionEstablishedTime) / 1000
       );
       wsConnectDuration.textContent = `${totalDuration} seconds (Disconnected)`;
     }
+
+    collectedData["wsStatus"]["wsConnectDuration"] = Number(wsConnectDuration?.textContent?.replace(" seconds (Disconnected)", ""));
+    collectedData["wsStatus"]["status"] = "onclose";
+    sendDataToBackend();
 
     ws = null;
     connectionEstablishedTime = null;

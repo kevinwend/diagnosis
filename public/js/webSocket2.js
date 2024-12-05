@@ -89,6 +89,7 @@ async function connect2() {
       collectedData["wsStatus2"]["cycleCount"] = cycleCount;
       collectedData["wsStatus2"]["status"] = "error";
       sendDataToBackend();
+
       reject(error)
     };
   });
